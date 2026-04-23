@@ -1,0 +1,27 @@
+# ═══════════════════════════════════════════════════════════════════
+# MCISH — Netlify Configuration
+# File: netlify.toml
+# ═══════════════════════════════════════════════════════════════════
+
+[build]
+  # Tidak ada build step — file HTML langsung di-serve dari root
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  # Node.js runtime untuk Netlify Functions
+  node_bundler = "esbuild"
+
+# ── Redirect: semua request ke /api/gas → fungsi gas-proxy ──────────
+[[redirects]]
+  from = "/.netlify/functions/gas-proxy"
+  to   = "/.netlify/functions/gas-proxy"
+  status = 200
+
+# ── Security headers ─────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
