@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 // ═══════════════════════════════════════════════════════════════════
 // MCISH — Netlify Serverless Function: GAS Proxy
 // File: netlify/functions/gas-proxy.js
